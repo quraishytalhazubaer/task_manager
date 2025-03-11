@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager | SIGN UP</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+          <h2>SIGN UP</h2>
+          {% if error %}
+          <p style="color: red; text-align: center;">
+              {{ error }}
+          </p>
+          {% endif %}
+          <form method="POST">
+            <label for="username">Full name</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="username">Phone</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+      
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+      
+            <button type="submit">SIGN UP</button>
+          </form>
+
+          <p style="color: darkblue;">Already registered ? <a href="/">Login here</a></p> 
+        </div>
+      </div>
+</body>
+</html>
