@@ -3,34 +3,29 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: mysql_todo
+    container_name: mysql_container
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: todo_db
-      MYSQL_USER: flaskuser
-      MYSQL_PASSWORD: flaskpassword
+      MYSQL_DATABASE: task_manager
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
-  flask_app:
+  flask-app:
     build: .
-    container_name: flask_todo_app
-    restart: always
-    depends_on:
-      - db
-    environment:
-      FLASK_ENV: production
-      DB_HOST: db
-      DB_USER: flaskuser
-      DB_PASSWORD: flaskpassword
-      DB_NAME: todo_db
+    container_name: flask_container
     ports:
       - "5000:5000"
-    volumes:
-      - .:/app
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpassword
+      MYSQL_DB: task_manager
+    depends_on:
+      - db
+    restart: always
 
 volumes:
   mysql_data:

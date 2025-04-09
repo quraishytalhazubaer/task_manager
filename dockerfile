@@ -1,14 +1,17 @@
+# Use Python 3.9 as base image
 FROM python:3.9
 
+# Set working directory
 WORKDIR /app
 
-COPY . /app
+# Copy application files
+COPY . .
 
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
+# Expose port 5000 for Flask
 EXPOSE 5000
 
-CMD ["flask", "run"]
+# Start the application
+CMD ["python", "app.py"]
